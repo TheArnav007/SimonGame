@@ -40,22 +40,22 @@ function checkAnswer(currentIndex) {
     setTimeout(function() {
       $("body").removeClass("game-over");
     }, 200);
-    $("#level-title").text("Game Over, Press Any Key to Restart.");
+    $("#level-title").text("Game Over, Click Anywhere to Restart.");
     level = 1;
     gamePattern = [];
     userClickedPattern = [];
     started = false;
   }
 }
-$(document).on("keydown", function() {
+$(document).on("click", function() {
   if (!started) {
     nextSequence();
     started = true;
   }
 });
 var userClickedPattern = [];
-$(".btn").on("click", function() {
-  var userChoosenColor = $(this).attr("id");
+$("body").on("keydown", function(e) {
+  var userChoosenColor = $("."+e.key).attr("id");
   playSound(userChoosenColor);
   animatePress(userChoosenColor);
   userClickedPattern.push(userChoosenColor);
